@@ -1,0 +1,3 @@
+Flask-Script
+# specific version needed for Crypto.Random and export of RSA keys
+PyCrypto >= 2.2
