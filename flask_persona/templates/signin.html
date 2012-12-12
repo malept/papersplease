@@ -1,0 +1,11 @@
+
+<script src="https://login.persona.org/authentication_api.js"></script>
+<script>
+navigator.id.beginAuthentication(function (email) {
+  if (/*logged_in*/(email)) {
+    navigator.id.completeAuthentication();
+  } else {
+    // display login form
+  }
+});
+</script>
