@@ -1,0 +1,27 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="https://login.persona.org/provisioning_api.js"></script>
+<script>
+navigator.id.beginProvisioning(function (email, certDuration) {
+  console.log(email);
+  console.log(certDuration);
+  // TODO check to see that it's a valid identity
+  navigator.id.genKeyPair(function (publicKey) {
+    console.log(publicKey);
+    var input = {
+      cert_duration: certDuration,
+      email: email,
+      public_key: publicKey
+    };
+    $.ajax('{{ url_for("persona_generate_certificate") }}', {
+      data: JSON.stringify(input),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      success: function (cert) {
+        navigator.id.registerCertificate(cert);
+      },
+      type: 'POST'
+    });
+  });
+});
+</script>
