@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import render_template, request
-from papersplease import generate_identity_cert, sign_as_rsa_jws
+from papersplease.persona import generate_identity_cert, sign_as_rsa_jws
 from . import app
 
 

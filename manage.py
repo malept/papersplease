@@ -4,7 +4,7 @@
 from flask import url_for
 from flask.ext.script import Command, Manager, Option
 from flask_persona import app
-import papersplease
+from papersplease import persona
 
 manager = Manager(app)
 
@@ -27,8 +27,8 @@ class GenerateWellKnown(Command):
     def run(self, output_dir):
         auth_url = url_for('persona_signin')
         provisioning_url = url_for('persona_provisioning')
-        papersplease.generate_wellknown_files(auth_url, provisioning_url,
-                                              output_dir)
+        persona.generate_wellknown_files(auth_url, provisioning_url,
+                                         output_dir)
 
 if __name__ == '__main__':
     manager.run()
