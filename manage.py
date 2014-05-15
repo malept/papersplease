@@ -1,12 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flask import url_for
+from flask import Flask, url_for
 from flask.ext.script import Command, Manager, Option
-from flask_persona import app
+from flask_persona import init_app
 from papersplease import persona
 
+app = Flask(__name__)
+app.config.from_object('local_settings')
 manager = Manager(app)
+init_app(app)
 
 
 def add_command(cmd_class):

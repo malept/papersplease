@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask
+from . import views
+from .blueprint import blueprint
 
-app = Flask(__name__)
-app.config.from_object('local_settings')
 
-import views
+def init_app(app, **kwargs):
+    app.register_blueprint(blueprint, **kwargs)
 
-__all__ = ['app', 'views']
+__all__ = ('init_app', 'views')
