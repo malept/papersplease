@@ -1,10 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from flask import Flask, url_for
 from flask.ext.script import Command, Manager, Option
-from flask_persona import init_app
 from papersplease import persona
+from papersplease.flask_persona import init_app
 
 app = Flask(__name__)
 app.config.from_object('local_settings')
