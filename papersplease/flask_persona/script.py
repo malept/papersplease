@@ -4,7 +4,9 @@ from flask import url_for
 from flask.ext.script import Command, Manager, Option
 from papersplease import persona
 
-manager = Manager(description='Perform Persona-related operations.')
+DESC = 'Perform Persona-related operations.'
+
+manager = Manager(description=DESC, help=DESC)
 
 
 def add_command(cmd_class):
