@@ -11,6 +11,9 @@ from flask.ext.script import Manager
 from papersplease.flask_persona import init_app, manager as persona_mgr
 
 app = Flask(__name__)
+# requires the following config values:
+# * PERSONA_DOMAIN - the domain name that the IdP represents
+# * PERSONA_PRIVATE_KEY_FILENAME - the absolute path to the IdP's private key
 app.config.from_object('local_settings')
 
 manager = Manager(app)
