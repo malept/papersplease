@@ -14,7 +14,7 @@ PKColumn = partial(db.Column, nullable=False, primary_key=True)
 
 
 class OpenIDAssociation(db.Model):
-    __tablename__ = 'openid_association'
+    __tablename__ = 'openid_associations'
 
     server_url = PKColumn(db.String(2047))
     handle = PKColumn(db.String(255))
@@ -25,7 +25,7 @@ class OpenIDAssociation(db.Model):
 
 
 class OpenIDNonce(db.Model):
-    __tablename__ = 'openid_nonce'
+    __tablename__ = 'openid_nonces'
     __table_args__ = (
         db.UniqueConstraint('server_url', 'timestamp', 'salt'),
     )
