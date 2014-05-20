@@ -6,35 +6,33 @@ from openid.association import Association
 from openid.store import nonce as oid_nonce
 from openid.store.interface import OpenIDStore as BaseOpenIDStore
 from operator import attrgetter
-from sqlalchemy import (
-    CHAR, Column, Integer, LargeBinary, String, UniqueConstraint)
 from sqlalchemy.exc import IntegrityError
 from time import time
 
-PKColumn = partial(Column, nullable=False, primary_key=True)
 db = SQLAlchemy()
+PKColumn = partial(db.Column, nullable=False, primary_key=True)
 
 
 class OpenIDAssociation(db.Model):
     __tablename__ = 'openid_association'
 
-    server_url = PKColumn(String(2047))
-    handle = PKColumn(String(255))
-    secret = Column(LargeBinary(128), nullable=False)
-    issued = Column(Integer, nullable=False)
-    lifetime = Column(Integer, nullable=False)
-    assoc_type = Column(String(64), nullable=False)
+    server_url = PKColumn(db.String(2047))
+    handle = PKColumn(db.String(255))
+    secret = db.Column(db.LargeBinary(128), nullable=False)
+    issued = db.Column(db.Integer, nullable=False)
+    lifetime = db.Column(db.Integer, nullable=False)
+    assoc_type = db.Column(db.String(64), nullable=False)
 
 
 class OpenIDNonce(db.Model):
     __tablename__ = 'openid_nonce'
     __table_args__ = (
-        UniqueConstraint('server_url', 'timestamp', 'salt'),
+        db.UniqueConstraint('server_url', 'timestamp', 'salt'),
     )
 
-    server_url = PKColumn(String(2047))
-    timestamp = PKColumn(Integer)
-    salt = PKColumn(CHAR(40))
+    server_url = PKColumn(db.String(2047))
+    timestamp = PKColumn(db.Integer)
+    salt = PKColumn(db.CHAR(40))
 
 
 class OpenIDStore(BaseOpenIDStore):
