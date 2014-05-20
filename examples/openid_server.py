@@ -11,9 +11,10 @@ from flask.ext.script import Manager
 from papersplease.flask_openid_idp import db, init_app
 
 app = Flask(__name__)
-app.config['DEBUG'] = True
-app.config['SECRET_KEY'] = 'secret key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/openid.db'
+# requires the following config values:
+# * SECRET_KEY (see Flask config)
+# * SQLALCHEMY_DATABASE_URI (see Flask-SQLAlchemy config)
+app.config.from_object('local_settings')
 
 init_app(app)
 manager = Manager(app)
