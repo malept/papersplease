@@ -3,18 +3,14 @@
 from flask import url_for
 from flask.ext.script import Command, Manager, Option
 from papersplease import persona
+from papersplease.flask_script import script_command
 
 DESC = 'Perform Persona-related operations.'
 
 manager = Manager(description=DESC, help=DESC)
 
 
-def add_command(cmd_class):
-    manager.add_command(cmd_class.name, cmd_class())
-    return cmd_class
-
-
-@add_command
+@script_command(manager)
 class GenerateWellKnown(Command):
     """Generate the JSON for /.well-known/browserid."""
 
