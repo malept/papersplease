@@ -2,7 +2,10 @@
 
 from __future__ import absolute_import
 
-from flask.ext.babel import lazy_gettext
+try:
+    from flask.ext.babelex import lazy_gettext as _
+except ImportError:
+    from flask.ext.babel import lazy_gettext as _
 from papersplease import gpgauth
 from .wtforms import GPGKeyIDField
 
@@ -13,11 +16,11 @@ class GPGAuthAdminViewMixin(object):
     }
     form_args = {
         'openpgp_key_id': {
-            'label': lazy_gettext(u'OpenPGP Key ID'),
+            'label': _(u'OpenPGP Key ID'),
         }
     }
     column_labels = {
-        'openpgp_key_id': lazy_gettext(u'OpenPGP Key ID'),
+        'openpgp_key_id': _(u'OpenPGP Key ID'),
     }
     column_formatters = {
         'openpgp_key_id': lambda v, c, m, p:

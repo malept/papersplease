@@ -5,7 +5,7 @@
   <link rel="openid.server" href="{{ url_for('openid_idp.endpoint', _external=true) }}">
 </head>
 <body>
-  <p>This is an OpenID endpoint.</p>
+  <p>{% trans %}This is an OpenID endpoint.{% endtrans %}</p>
   {%- if err %}
   <p style="color:red">{{ err }}</p>
   {%- endif %}
